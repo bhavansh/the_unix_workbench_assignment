@@ -1,28 +1,39 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 # File: guessinggame.sh
 
 fileno=$(ls | wc -l)
-guess=0
 
 function check {
 
-    if [[ $1 -lt $2 ]]
-    then
-        echo 'echo "Too Low "'
-    elif [[ $1 -gt $2 ]]
-    then
-        echo 'echo "Too High "'
-    fi
+echo "Guessing Game";
 
-}
-
-while [ $guess -ne $fileno ]
+while :
 do
+
     echo "How many files are there in the directory"
     read guess
 
-    $(check $guess $fileno)
+    if [[ $guess =~ ^[0-9]+$ ]]
+    then
+        if [[ $guess -lt $fileno ]]
+        then
+            echo "Too Low ";
+        elif [[ $guess -gt $fileno ]]
+        then
+            echo "Too High ";
+        else
+            echo "You are correct "
+            break
+        fi
+    else
+        echo "Not a number"
+    fi
+  
 
 done
 
-echo "You are correct"
+}
+
+check
+
+
