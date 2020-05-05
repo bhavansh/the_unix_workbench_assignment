@@ -1,8 +1,8 @@
 #!usr/bin/env bash
 # File: guessinggame.sh
 
+fileno=$(ls | wc -l)
 guess=0
-fileno=3
 
 function check {
 
